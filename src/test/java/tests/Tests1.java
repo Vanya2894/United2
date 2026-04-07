@@ -1,17 +1,13 @@
-import Pages.BasePage;
-import Pages.CheckboxPage;
-import Pages.TextBoxPage;
+package tests;
+import Pages.*;
 import com.microsoft.playwright.*;
-import com.microsoft.playwright.assertions.LocatorAssertions;
 import com.microsoft.playwright.options.*;
 import org.junit.jupiter.api.Test;
 
-import java.awt.*;
-import java.util.List;
 
 import static com.microsoft.playwright.assertions.PlaywrightAssertions.assertThat;
 
-public class Tests {
+public class Tests1 {
     Playwright playwright = Playwright.create();
     Browser browser = playwright.chromium().launch(new BrowserType.LaunchOptions().setHeadless(false).setSlowMo(250));
     Page page = browser.newPage();
@@ -89,6 +85,4 @@ public class Tests {
 
         browser.close();
     }
-
-
 }
