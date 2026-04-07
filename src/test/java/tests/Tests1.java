@@ -1,5 +1,4 @@
-package Tests;
-
+package tests;
 import Pages.*;
 import com.microsoft.playwright.*;
 import com.microsoft.playwright.options.*;
@@ -8,7 +7,7 @@ import org.junit.jupiter.api.Test;
 
 import static com.microsoft.playwright.assertions.PlaywrightAssertions.assertThat;
 
-public class Tests {
+public class Tests1 {
     Playwright playwright = Playwright.create();
     Browser browser = playwright.chromium().launch(new BrowserType.LaunchOptions().setHeadless(false).setSlowMo(250));
     Page page = browser.newPage();
@@ -86,6 +85,4 @@ public class Tests {
 
         browser.close();
     }
-
-
 }
