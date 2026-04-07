@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 
 import static com.microsoft.playwright.assertions.PlaywrightAssertions.assertThat;
 
-public class Tests1 {
+public class TryFirstTests {
     Playwright playwright = Playwright.create();
     Browser browser = playwright.chromium().launch(new BrowserType.LaunchOptions().setHeadless(false).setSlowMo(250));
     Page page = browser.newPage();

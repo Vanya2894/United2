@@ -3,6 +3,7 @@ package tests;
 import Pages.*;
 import com.microsoft.playwright.*;
 import com.microsoft.playwright.options.WaitUntilState;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import static com.microsoft.playwright.assertions.PlaywrightAssertions.assertThat;
@@ -12,12 +13,12 @@ public class TryNewTest {
     Playwright playwright = Playwright.create();
     Browser browser = playwright.chromium().launch(new BrowserType.LaunchOptions().setHeadless(false).setSlowMo(250));
     Page page = browser.newPage();
-    BasePage radioButtom = new RadioButtonPage();
+    BasePage radioButton = new RadioButtonPage();
 
 
     @Test
     public void testForClickToRadioButton() {
-        page.navigate(radioButtom.getUrl(), new Page.NavigateOptions().setWaitUntil(WaitUntilState.DOMCONTENTLOADED));
+        page.navigate(radioButton.getUrl(), new Page.NavigateOptions().setWaitUntil(WaitUntilState.DOMCONTENTLOADED));
 
         String yesRadioText = "#root div:nth-child(1) > label";
         String yesRadioBtn = "#yesRadio";
