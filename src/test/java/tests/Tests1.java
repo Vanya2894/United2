@@ -1,13 +1,10 @@
-import Pages.BasePage;
-import Pages.CheckboxPage;
-import Pages.TextBoxPage;
+package Tests;
+
+import Pages.*;
 import com.microsoft.playwright.*;
-import com.microsoft.playwright.assertions.LocatorAssertions;
 import com.microsoft.playwright.options.*;
 import org.junit.jupiter.api.Test;
 
-import java.awt.*;
-import java.util.List;
 
 import static com.microsoft.playwright.assertions.PlaywrightAssertions.assertThat;
 
