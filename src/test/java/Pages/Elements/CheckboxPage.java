@@ -1,6 +1,8 @@
-package Pages;
+package Pages.Elements;
 
-public class CheckboxPage extends BasePage{
+import Pages.BasePage;
+
+public class CheckboxPage extends BasePage {
 
     @Override
     public String getUrl() {

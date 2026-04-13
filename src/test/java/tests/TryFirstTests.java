@@ -1,5 +1,7 @@
 package tests;
 import Pages.*;
+import Pages.Elements.CheckboxPage;
+import Pages.Elements.TextBoxPage;
 import com.microsoft.playwright.*;
 import com.microsoft.playwright.options.*;
 import org.junit.jupiter.api.Test;
@@ -9,15 +11,21 @@ import static com.microsoft.playwright.assertions.PlaywrightAssertions.assertTha
 
 public class TryFirstTests {
     Playwright playwright = Playwright.create();
-    Browser browser = playwright.chromium().launch(new BrowserType.LaunchOptions().setHeadless(false).setSlowMo(250));
+    Browser browser = playwright.chromium()
+            .launch(new BrowserType
+                    .LaunchOptions()
+                    .setHeadless(false)
+                    .setSlowMo(250));
     Page page = browser.newPage();
     BasePage textBoxPage = new TextBoxPage();
     BasePage checkboxPage = new CheckboxPage();
 
     @Test
     public void testForSetValueInInputsOnElements() {
-        page.navigate(textBoxPage.getUrl(), new Page.NavigateOptions()
-                .setWaitUntil(WaitUntilState.DOMCONTENTLOADED));
+        page.navigate(textBoxPage.getUrl(), new Page
+                .NavigateOptions()
+                .setWaitUntil(WaitUntilState
+                        .DOMCONTENTLOADED));
 
         assertThat(page).hasTitle("demosite");
 

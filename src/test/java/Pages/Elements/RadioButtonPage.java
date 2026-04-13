@@ -1,6 +1,8 @@
-package Pages;
+package Pages.Elements;
 
-public class RadioButtonPage extends BasePage{
+import Pages.BasePage;
+
+public class RadioButtonPage extends BasePage {
 
     @Override
     public String getUrl() {
