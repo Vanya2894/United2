@@ -19,7 +19,7 @@ public class TryWebtables {
             .launch(new BrowserType
                     .LaunchOptions()
                     .setHeadless(false)
-                    .setSlowMo(1));
+                    .setSlowMo(150));
     BrowserContext context = browser.newContext(
             new Browser.NewContextOptions()
                     .setViewportSize(1920, 920)  // ширина, высота в пикселях
@@ -56,8 +56,20 @@ public class TryWebtables {
             page.getByRole(AriaRole.TEXTBOX, new Page.GetByRoleOptions().setName("Type to search")).clear();
         });
 
+        page.close();
+
+    }
+
+    @Test
+    public void pagination() {
 
         Allure.step("Пагинация", () -> {
+
+            page.navigate(webtables.getUrl(), new Page
+                    .NavigateOptions()
+                    .setWaitUntil(WaitUntilState
+                            .DOMCONTENTLOADED));
+
             for (int i = 0; i < 20; i++) {
                 createTableString();
             }
@@ -70,10 +82,18 @@ public class TryWebtables {
             assertThat(page.locator("#root div.pagination.d-flex.align-items-center.justify-content-between.mt-3 div:nth-child(2)")).hasText("Page 2 of 3");
             page.getByRole(AriaRole.BUTTON, new Page.GetByRoleOptions().setName("First")).click();
             assertThat(page.locator("#root div.pagination.d-flex.align-items-center.justify-content-between.mt-3 div:nth-child(2)")).hasText("Page 1 of 3");
+            page.locator("select.form-control").selectOption("Show 20");
+            assertThat(page.locator("#root  table tr")).hasCount(21);
+            assertThat(page.locator("#root div.pagination.d-flex.align-items-center.justify-content-between.mt-3 div:nth-child(2)")).hasText("Page 1 of 2");
+            page.locator("select.form-control").selectOption("Show 30");
+            assertThat(page.locator("#root  table tr")).hasCount(24);
+            assertThat(page.locator("#root div.pagination.d-flex.align-items-center.justify-content-between.mt-3 div:nth-child(2)")).hasText("Page 1 of 1");
+            page.locator("select.form-control").selectOption("Show 10");
+            assertThat(page.locator("#root  table tr")).hasCount(11);
+            assertThat(page.locator("#root div.pagination.d-flex.align-items-center.justify-content-between.mt-3 div:nth-child(2)")).hasText("Page 1 of 3");
+            page.close();
         });
-
-        page.waitForTimeout(10000);
-
+        browser.close();
 
     }
 

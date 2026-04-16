@@ -1,5 +1,6 @@
 plugins {
     id 'java'
+    id 'io.qameta.allure' version '2.11.2'
 }
 
 group = 'org.example'
@@ -13,9 +14,21 @@ dependencies {
     testImplementation platform('org.junit:junit-bom:5.10.0')
     testImplementation 'org.junit.jupiter:junit-jupiter'
     testImplementation "com.microsoft.playwright:playwright:1.58.0"
+    testImplementation 'io.qameta.allure:allure-junit5:2.25.0'
+    testRuntimeOnly 'org.slf4j:slf4j-simple:2.0.13'
+}
+
+allure {
+    version = '2.25.0'          // версия Allure Framework
+    autoconfigure = true
+    aspectjweaver = true        // включает AspectJ для подхвата аннотаций @Step
+    useJUnit5 {
+        version = '2.25.0'      // версия allure-junit5
+    }
 }
 
 test {
     useJUnitPlatform()
+    systemProperty "allure.results.directory", project.buildDir.path + "/allure-results"
 
 }
