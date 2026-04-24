@@ -19,11 +19,10 @@ public class TryWebtables {
             .launch(new BrowserType
                     .LaunchOptions()
                     .setHeadless(false)
+                    .setArgs(List.of("--start-maximized"))
                     .setSlowMo(150));
-    BrowserContext context = browser.newContext(
-            new Browser.NewContextOptions()
-                    .setViewportSize(1920, 920)  // ширина, высота в пикселях
-    );
+    BrowserContext context = browser.newContext(new Browser.NewContextOptions()
+            .setViewportSize(null));
 
     Page page = context.newPage();
     Webtables webtables = new Webtables();
