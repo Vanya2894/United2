@@ -1,6 +1,8 @@
 package tests;
 
+import Pages.BasePage;
 import com.microsoft.playwright.*;
+import com.microsoft.playwright.options.WaitUntilState;
 import org.junit.jupiter.api.*;
 
 import java.util.List;
@@ -29,8 +31,12 @@ public class BaseTest {
     void setup() {
         context = browser.newContext(new Browser.NewContextOptions()
                 .setViewportSize(null));
-        page = browser.newPage();
+        page = context.newPage();
 
+    }
+    protected void navigateTo(BasePage pageObject) {
+        page.navigate(pageObject.getUrl(), new Page.NavigateOptions()
+                .setWaitUntil(WaitUntilState.DOMCONTENTLOADED));
     }
 
     @AfterEach
@@ -44,4 +50,7 @@ public class BaseTest {
         browser.close();
         playwright.close();
     }
+
+
+
 }

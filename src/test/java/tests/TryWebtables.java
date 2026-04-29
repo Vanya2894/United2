@@ -6,24 +6,24 @@ import com.microsoft.playwright.options.*;
 import io.qameta.allure.*;
 import org.junit.jupiter.api.*;
 
-import java.util.List;
-import java.util.Random;
-import java.util.concurrent.ThreadLocalRandom;
-
 import static com.microsoft.playwright.assertions.PlaywrightAssertions.assertThat;
 
 public class TryWebtables extends BaseTest{
 
-    Webtables webtables = new Webtables();
+    private Webtables webtables;
+
+    @BeforeEach
+    void initPage() {
+        webtables = new Webtables(page);
+    }
+
 
     @Epic("Веб-интерфейс")
     @Feature("Авторизация")
     @Test
     public void ThyToChangeValueTest() {
-        page.navigate(webtables.getUrl(), new Page
-                .NavigateOptions()
-                .setWaitUntil(WaitUntilState
-                        .DOMCONTENTLOADED));
+
+        navigateTo(webtables);
 
         Allure.step("Редактирование и удаление строки таблицы", () -> {
             page.locator("#edit-record-1 > svg > path").click();
@@ -52,13 +52,10 @@ public class TryWebtables extends BaseTest{
 
         Allure.step("Пагинация", () -> {
 
-            page.navigate(webtables.getUrl(), new Page
-                    .NavigateOptions()
-                    .setWaitUntil(WaitUntilState
-                            .DOMCONTENTLOADED));
+            navigateTo(webtables);
 
             for (int i = 0; i < 20; i++) {
-                createTableString();
+                webtables.createTableString();
             }
             assertThat(page.locator("#root div.pagination.d-flex.align-items-center.justify-content-between.mt-3 div:nth-child(2)")).hasText("Page 1 of 3");
             page.getByRole(AriaRole.BUTTON, new Page.GetByRoleOptions().setName("Next")).click();
@@ -78,37 +75,11 @@ public class TryWebtables extends BaseTest{
             page.locator("select.form-control").selectOption("Show 10");
             assertThat(page.locator("#root  table tr")).hasCount(11);
             assertThat(page.locator("#root div.pagination.d-flex.align-items-center.justify-content-between.mt-3 div:nth-child(2)")).hasText("Page 1 of 3");
-            page.close();
         });
 
     }
 
-    public static String generateRandomString(int length) {
-        String chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-        Random random = new Random();
-        StringBuilder sb = new StringBuilder(length);
-        for (int i = 0; i < length; i++) {
-            sb.append(chars.charAt(random.nextInt(chars.length())));
-        }
-        return sb.toString();
-    }
 
-    public static String randomInt() {
-        String value = Integer.toString(ThreadLocalRandom.current().nextInt(1, 1001));
-        return value;
-    }
-
-
-    public void createTableString() {
-        page.getByRole(AriaRole.BUTTON, new Page.GetByRoleOptions().setName("Add")).click();
-        page.getByRole(AriaRole.TEXTBOX, new Page.GetByRoleOptions().setName("First Name")).fill(generateRandomString(10));
-        page.getByRole(AriaRole.TEXTBOX, new Page.GetByRoleOptions().setName("Last Name")).fill(generateRandomString(10));
-        page.getByRole(AriaRole.TEXTBOX, new Page.GetByRoleOptions().setName("name@example.com")).fill(generateRandomString(3) + "@" + generateRandomString(5) + ".ru");
-        page.getByRole(AriaRole.TEXTBOX, new Page.GetByRoleOptions().setName("Age")).fill(randomInt());
-        page.getByRole(AriaRole.TEXTBOX, new Page.GetByRoleOptions().setName("Salary")).fill(randomInt());
-        page.getByRole(AriaRole.TEXTBOX, new Page.GetByRoleOptions().setName("Department")).fill(generateRandomString(10));
-        page.getByRole(AriaRole.BUTTON, new Page.GetByRoleOptions().setName("Submit")).click();
-    }
 }
 
 

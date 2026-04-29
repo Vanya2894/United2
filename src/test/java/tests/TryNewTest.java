@@ -1,24 +1,23 @@
 package tests;
 
-import Pages.*;
 import Pages.Elements.RadioButtonPage;
-import com.microsoft.playwright.*;
-import com.microsoft.playwright.options.WaitUntilState;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 
 import static com.microsoft.playwright.assertions.PlaywrightAssertions.assertThat;
 
 public class TryNewTest extends BaseTest{
 
-    BasePage radioButton = new RadioButtonPage();
+    private RadioButtonPage radioButton;
+
+    @BeforeEach
+    void initPage() {
+        radioButton = new RadioButtonPage(page);
+    }
 
 
     @Test
     public void testForClickToRadioButton() {
-        page.navigate(radioButton.getUrl(), new Page
-                .NavigateOptions()
-                .setWaitUntil(WaitUntilState
-                        .DOMCONTENTLOADED));
+        navigateTo(radioButton);
 
         String yesRadioText = "#root div:nth-child(1) > label";
         String yesRadioBtn = "#yesRadio";
@@ -38,8 +37,6 @@ public class TryNewTest extends BaseTest{
         page.click(impressiveRadioText);
         assertThat(page.locator(result)).hasText("You have selected Impressive");
 
-
-        browser.close();
     }
 
 }
