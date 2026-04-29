@@ -9,14 +9,8 @@ import org.junit.jupiter.api.Test;
 
 import static com.microsoft.playwright.assertions.PlaywrightAssertions.assertThat;
 
-public class TryFirstTests {
-    Playwright playwright = Playwright.create();
-    Browser browser = playwright.chromium()
-            .launch(new BrowserType
-                    .LaunchOptions()
-                    .setHeadless(false)
-                    .setSlowMo(250));
-    Page page = browser.newPage();
+public class TryFirstTests extends BaseTest{
+
     BasePage textBoxPage = new TextBoxPage();
     BasePage checkboxPage = new CheckboxPage();
 
@@ -49,7 +43,6 @@ public class TryFirstTests {
         assertThat(page.locator(currentAddressResponse)).hasText("Current Address :SPB, Krasnogo Kursanta, 25");
         assertThat(page.locator(permanentAddressResponse)).hasText("Permananet Address :RRRRRRRRRRRRRRRRR");
 
-        browser.close();
     }
 
     @Test
@@ -91,6 +84,5 @@ public class TryFirstTests {
         String text = page.locator("#root div.col-12.mt-4.col-md-6.col-xl-7 > div:nth-child(3)").textContent();
         assert text.isEmpty();
 
-        browser.close();
     }
 }

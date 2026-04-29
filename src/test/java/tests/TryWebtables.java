@@ -12,19 +12,8 @@ import java.util.concurrent.ThreadLocalRandom;
 
 import static com.microsoft.playwright.assertions.PlaywrightAssertions.assertThat;
 
-public class TryWebtables {
+public class TryWebtables extends BaseTest{
 
-    Playwright playwright = Playwright.create();
-    Browser browser = playwright.chromium()
-            .launch(new BrowserType
-                    .LaunchOptions()
-                    .setHeadless(false)
-                    .setArgs(List.of("--start-maximized"))
-                    .setSlowMo(150));
-    BrowserContext context = browser.newContext(new Browser.NewContextOptions()
-            .setViewportSize(null));
-
-    Page page = context.newPage();
     Webtables webtables = new Webtables();
 
     @Epic("Веб-интерфейс")
@@ -55,7 +44,6 @@ public class TryWebtables {
             page.getByRole(AriaRole.TEXTBOX, new Page.GetByRoleOptions().setName("Type to search")).clear();
         });
 
-        page.close();
 
     }
 
@@ -92,7 +80,6 @@ public class TryWebtables {
             assertThat(page.locator("#root div.pagination.d-flex.align-items-center.justify-content-between.mt-3 div:nth-child(2)")).hasText("Page 1 of 3");
             page.close();
         });
-        browser.close();
 
     }
 
