@@ -17,6 +17,8 @@ public class TryWebtables extends BaseTest{
     private final String PAGE2OF3 = "Page 2 of 3";
     private final String PAGE3OF3 = "Page 3 of 3";
 
+    private final String TIPE_TO_SEARCH = "Type to search";
+
     private final String SHOW10 = "Show 10";
     private final String SHOW20 = "Show 20";
     private final String SHOW30 = "Show 30";
@@ -50,10 +52,10 @@ public class TryWebtables extends BaseTest{
 
 
         Allure.step("Поиск по таблице", () -> {
-            page.getByRole(AriaRole.TEXTBOX, new Page.GetByRoleOptions().setName("Type to search")).fill(CHENGE_TEXT);
+            page.getByRole(AriaRole.TEXTBOX, new Page.GetByRoleOptions().setName(TIPE_TO_SEARCH)).fill(CHENGE_TEXT);
             assertThat(page.locator(webtables.getCounStringsTabl())).hasCount(2);
             assertThat(page.locator(webtables.getFirstStringTable())).hasText(CHENGE_TEXT);
-            page.getByRole(AriaRole.TEXTBOX, new Page.GetByRoleOptions().setName("Type to search")).clear();
+            page.getByRole(AriaRole.TEXTBOX, new Page.GetByRoleOptions().setName(TIPE_TO_SEARCH)).clear();
         });
 
 
