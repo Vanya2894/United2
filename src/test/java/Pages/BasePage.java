@@ -1,9 +1,8 @@
 package Pages;
 
 import com.microsoft.playwright.Page;
-import com.microsoft.playwright.options.WaitUntilState;
 
-public class BasePage {
+abstract public class BasePage {
     private final String url = "https://demoqa.com/";
     protected Page page;
 
