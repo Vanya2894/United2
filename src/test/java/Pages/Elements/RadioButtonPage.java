@@ -12,6 +12,10 @@ public class RadioButtonPage extends BasePage {
     private String impressiveRadioBtn = "#impressiveRadio";
     private String noRadioText = "#root  div:nth-child(3) > label";
 
+    private String noRadioBtn = "#noRadio";
+    private String result = "#root div:nth-child(2) > p";
+
+
     public String getYesRadioText() {
         return yesRadioText;
     }
@@ -39,10 +43,6 @@ public class RadioButtonPage extends BasePage {
     public String getResult() {
         return result;
     }
-
-    private String noRadioBtn = "#noRadio";
-    private String result = "#root div:nth-child(2) > p";
-
 
     public RadioButtonPage(Page page) {
         super(page);

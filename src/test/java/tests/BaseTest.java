@@ -23,7 +23,7 @@ public class BaseTest {
                         .LaunchOptions()
                         .setHeadless(false)
                         .setArgs(List.of("--start-maximized"))
-                        .setSlowMo(150));
+                        .setSlowMo(250));
 
     }
 
