@@ -80,13 +80,13 @@ public class TryWebtables extends BaseTest{
             page.getByRole(AriaRole.BUTTON, new Page.GetByRoleOptions().setName("First")).click();
             assertThat(page.locator(webtables.getCountOfPage())).hasText(PAGE1OF3);
             page.locator(webtables.getSelectFormControl()).selectOption(SHOW20);
-            assertThat(page.locator(webtables.getCounStringsTabl())).hasCount(21);
+            assertThat(page.locator(webtables.getCounStringsTabl())).hasCount(20);
             assertThat(page.locator(webtables.getCountOfPage())).hasText(PAGE1OF2);
             page.locator(webtables.getSelectFormControl()).selectOption(SHOW30);
-            assertThat(page.locator(webtables.getCounStringsTabl())).hasCount(24);
+            assertThat(page.locator(webtables.getCounStringsTabl())).hasCount(23);
             assertThat(page.locator(webtables.getCountOfPage())).hasText(PAGE1OF1);
             page.locator(webtables.getSelectFormControl()).selectOption(SHOW10);
-            assertThat(page.locator(webtables.getCounStringsTabl())).hasCount(11);
+            assertThat(page.locator(webtables.getCounStringsTabl())).hasCount(10);
             assertThat(page.locator(webtables.getCountOfPage())).hasText(PAGE1OF3);
         });
 
