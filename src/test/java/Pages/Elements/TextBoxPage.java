@@ -32,5 +32,23 @@ public class TextBoxPage extends BasePage {
         page.locator(submitButton).click();
     }
 
+    public void fillAndSubmitValueInTextBox(Page page, String userName, String userEmail, String currentAddress) {
+        page.locator(userNameinput).fill(userName);
+        page.locator(userEmailinput).fill(userEmail);
+        page.locator(currentAddressInput).fill(currentAddress);
+        page.locator(submitButton).click();
+    }
+
+    public void fillAndSubmitValueInTextBox(Page page, String userName, String userEmail) {
+        page.locator(userNameinput).fill(userName);
+        page.locator(userEmailinput).fill(userEmail);
+        page.locator(submitButton).click();
+    }
+
+    public void fillAndSubmitValueInTextBox(Page page, String userName) {
+        page.locator(userNameinput).fill(userName);
+        page.locator(submitButton).click();
+    }
+
 
 }
