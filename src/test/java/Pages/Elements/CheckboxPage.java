@@ -3,8 +3,11 @@ package Pages.Elements;
 import Pages.BasePage;
 import com.microsoft.playwright.Page;
 
+import static com.microsoft.playwright.assertions.PlaywrightAssertions.assertThat;
+
 public class CheckboxPage extends BasePage {
 
+    // Locators
     private String plusRootBtnClose = "#root span.rc-tree-switcher.rc-tree-switcher_close";
     private String plusRootBtnOpen = "#root  div:nth-child(1) > span.rc-tree-switcher.rc-tree-switcher_open";
     private String plusDecktop = "#root div:nth-child(2) > span.rc-tree-switcher.rc-tree-switcher_close";
@@ -18,6 +21,9 @@ public class CheckboxPage extends BasePage {
     private String checkBoxDownload = "#root  div:nth-child(15) > span.rc-tree-checkbox";
     private String checkboxResult = "#result";
 
+    // Variables
+
+    // Initialisation
     public CheckboxPage(Page page) {
         super(page);
     }
@@ -27,6 +33,12 @@ public class CheckboxPage extends BasePage {
         return super.getUrl() + "checkbox";
     }
 
+    // Getters
+    public String getCheckboxResult() {
+        return checkboxResult;
+    }
+
+    // Methods
     public void clickPlusRootBtnClose(){
         page.click(plusRootBtnClose);
     }
@@ -68,8 +80,15 @@ public class CheckboxPage extends BasePage {
         page.click(checkBoxDownload);
     }
 
-    public String getCheckboxResult() {
-        return checkboxResult;
+    // Asserts
+    public void checkResultText(String expectedText) {
+        assertThat(page.locator(getCheckboxResult())).containsText(expectedText);
     }
+
+    public void checkResultTextNotPresent() {
+        assertThat(page.locator(getCheckboxResult())).not().isVisible();
+    }
+
+
 }
 
