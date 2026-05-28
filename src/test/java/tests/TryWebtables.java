@@ -8,7 +8,7 @@ import org.junit.jupiter.api.*;
 
 import static com.microsoft.playwright.assertions.PlaywrightAssertions.assertThat;
 
-public class TryWebtables extends BaseTest{
+public class TryWebtables extends BaseTest {
 
     private final String CHENGE_TEXT = "another_value";
     private final String PAGE1OF1 = "Page 1 of 1";
@@ -16,12 +16,6 @@ public class TryWebtables extends BaseTest{
     private final String PAGE1OF3 = "Page 1 of 3";
     private final String PAGE2OF3 = "Page 2 of 3";
     private final String PAGE3OF3 = "Page 3 of 3";
-
-    private final String TIPE_TO_SEARCH = "Type to search";
-
-    private final String SHOW10 = "Show 10";
-    private final String SHOW20 = "Show 20";
-    private final String SHOW30 = "Show 30";
 
     private Webtables webtables;
 
@@ -40,54 +34,60 @@ public class TryWebtables extends BaseTest{
 
         Allure.step("Редактирование и удаление строки таблицы", () -> {
             webtables.createTableString();
-            page.locator(webtables.getEditRecord()).click();
-            page.getByRole(AriaRole.TEXTBOX, new Page.GetByRoleOptions().setName("First Name")).fill(CHENGE_TEXT);
-            page.getByRole(AriaRole.BUTTON, new Page.GetByRoleOptions().setName("Submit")).click();
-            assertThat(page.locator(webtables.getCounStringsTabl())).hasCount(4);
-            assertThat(page.locator(webtables.getFirstStringTable())).hasText(CHENGE_TEXT);
-            page.locator("#delete-record-2").click();
-            assertThat(page.locator(webtables.getCounStringsTabl())).hasCount(2); // Баг системы. Должно быть три строки. но отображается 2.
+            webtables.editRecordClick();
+            webtables.firstNameValueFill(CHENGE_TEXT);
+            webtables.submitBtnClick();
+            webtables.checkCounStringsTabl(4);
+            webtables.checkFirstStringTable(CHENGE_TEXT);
+            webtables.deleteRecordSecondStringClick();
+            webtables.checkCounStringsTabl(3); // Баг системы. Должно быть три строки. Но отображается 2.
         });
 
 
         Allure.step("Поиск по таблице", () -> {
-            page.getByRole(AriaRole.TEXTBOX, new Page.GetByRoleOptions().setName(TIPE_TO_SEARCH)).fill(CHENGE_TEXT);
-            assertThat(page.locator(webtables.getCounStringsTabl())).hasCount(0);  // Баг системы. Должна быть одна строка. но отображается 0.
-//            assertThat(page.locator(webtables.getFirstStringTable())).hasText(CHENGE_TEXT);  // Строка кода закомментирована чтоб тест не падал.
-            page.getByRole(AriaRole.TEXTBOX, new Page.GetByRoleOptions().setName(TIPE_TO_SEARCH)).clear();
+            webtables.searchValueFill(CHENGE_TEXT);
+            webtables.checkCounStringsTabl(1);   // Баг системы. Должна быть одна строка. Но отображается 0.
+            webtables.checkFirstStringTable(CHENGE_TEXT);   // Из-за бага не отображается строка
+            webtables.clearSearchValue();
         });
 
 
     }
 
+    @Story("Проверка пагинации на странице")
     @Test
     public void pagination() {
 
-        Allure.step("Проверка пагинации на странице", () -> {
-
+        Allure.step("Создаем 20 записей таблицы", () -> {
             navigateTo(webtables);
-
             for (int i = 0; i < 20; i++) {
                 webtables.createTableString();
             }
-            assertThat(page.locator(webtables.getCountOfPage())).hasText(PAGE1OF3);
-            page.getByRole(AriaRole.BUTTON, new Page.GetByRoleOptions().setName("Next")).click();
-            assertThat(page.locator(webtables.getCountOfPage())).hasText(PAGE2OF3);
-            page.getByRole(AriaRole.BUTTON, new Page.GetByRoleOptions().setName("Last")).click();
-            assertThat(page.locator(webtables.getCountOfPage())).hasText(PAGE3OF3);
-            page.getByRole(AriaRole.BUTTON, new Page.GetByRoleOptions().setName("Previous")).click();
-            assertThat(page.locator(webtables.getCountOfPage())).hasText(PAGE2OF3);
-            page.getByRole(AriaRole.BUTTON, new Page.GetByRoleOptions().setName("First")).click();
-            assertThat(page.locator(webtables.getCountOfPage())).hasText(PAGE1OF3);
-            page.locator(webtables.getSelectFormControl()).selectOption(SHOW20);
-            assertThat(page.locator(webtables.getCounStringsTabl())).hasCount(20);
-            assertThat(page.locator(webtables.getCountOfPage())).hasText(PAGE1OF2);
-            page.locator(webtables.getSelectFormControl()).selectOption(SHOW30);
-            assertThat(page.locator(webtables.getCounStringsTabl())).hasCount(23);
-            assertThat(page.locator(webtables.getCountOfPage())).hasText(PAGE1OF1);
-            page.locator(webtables.getSelectFormControl()).selectOption(SHOW10);
-            assertThat(page.locator(webtables.getCounStringsTabl())).hasCount(10);
-            assertThat(page.locator(webtables.getCountOfPage())).hasText(PAGE1OF3);
+        });
+
+        Allure.step("Переход по страницам по кнопкам Next/Last/Previous/First", () -> {
+            webtables.checkCountOfPage(PAGE1OF3);
+            webtables.nextButtonClick();
+            webtables.checkCountOfPage(PAGE2OF3);
+            webtables.lastButtonClick();
+            webtables.checkCountOfPage(PAGE3OF3);
+            webtables.previousButtonClick();
+            webtables.checkCountOfPage(PAGE2OF3);
+            webtables.firstButtonClick();
+            webtables.checkCountOfPage(PAGE1OF3);
+        });
+
+        Allure.step("Меняем отображение записей на одной странице", () -> {
+
+            webtables.selectFormControlFill(20);
+            webtables.checkCounStringsTabl(20);
+            webtables.checkCountOfPage(PAGE1OF2);
+            webtables.selectFormControlFill(30);
+            webtables.checkCounStringsTabl(23);
+            webtables.checkCountOfPage(PAGE1OF1);
+            webtables.selectFormControlFill(10);
+            webtables.checkCounStringsTabl(10);
+            webtables.checkCountOfPage(PAGE1OF3);
         });
 
     }

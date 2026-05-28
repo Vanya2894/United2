@@ -28,7 +28,7 @@ public class SetValueInInput extends BaseTest {
         assertThat(page).hasTitle("demosite");
 
         Allure.step("Заполнение всех текстовых полей", () -> {
-            textBoxPage.fillAndSubmitValueInTextBox(page, NAME, EMAIL, CURRENT_ADDRES, PERMANENT_ADDRES);
+            textBoxPage.fillAndSubmitValueInTextBox(NAME, EMAIL, CURRENT_ADDRES, PERMANENT_ADDRES);
             textBoxPage.checkNameResponse(NAME);
             textBoxPage.checkEmailResponse(EMAIL);
             textBoxPage.checkCurrentAddressResponse(CURRENT_ADDRES);
@@ -37,7 +37,7 @@ public class SetValueInInput extends BaseTest {
 
         Allure.step("Заполнение только имени текстовых полей", () -> {
             page.reload();
-            textBoxPage.fillAndSubmitValueInTextBox(page, NAME);
+            textBoxPage.fillAndSubmitValueInTextBox(NAME);
             textBoxPage.checkNameResponse(NAME);
             textBoxPage.checkHiddenEmailResponse();
             textBoxPage.checkHiddenCurrentAddressResponse();
@@ -46,7 +46,7 @@ public class SetValueInInput extends BaseTest {
 
         Allure.step("Заполнение имени и электронной почты текстовых полей", () -> {
             page.reload();
-            textBoxPage.fillAndSubmitValueInTextBox(page, NAME, EMAIL);
+            textBoxPage.fillAndSubmitValueInTextBox(NAME, EMAIL);
             textBoxPage.checkNameResponse(NAME);
             textBoxPage.checkEmailResponse(EMAIL);
             textBoxPage.checkHiddenCurrentAddressResponse();
@@ -54,7 +54,7 @@ public class SetValueInInput extends BaseTest {
         });
 
         Allure.step("Заполнение имя, электронная почта и адрес текстовых полей", () -> {
-            textBoxPage.fillAndSubmitValueInTextBox(page, NAME, EMAIL, CURRENT_ADDRES);
+            textBoxPage.fillAndSubmitValueInTextBox(NAME, EMAIL, CURRENT_ADDRES);
             textBoxPage.checkNameResponse(NAME);
             textBoxPage.checkEmailResponse(EMAIL);
             textBoxPage.checkCurrentAddressResponse(CURRENT_ADDRES);

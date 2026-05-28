@@ -38,6 +38,50 @@ public class CheckboxPage extends BasePage {
         return checkboxResult;
     }
 
+    public String getPlusRootBtnClose() {
+        return plusRootBtnClose;
+    }
+
+    public String getPlusRootBtnOpen() {
+        return plusRootBtnOpen;
+    }
+
+    public String getPlusDecktop() {
+        return plusDecktop;
+    }
+
+    public String getPlusDocuments() {
+        return plusDocuments;
+    }
+
+    public String getPlusWorkSpase() {
+        return plusWorkSpase;
+    }
+
+    public String getPlusOffice() {
+        return plusOffice;
+    }
+
+    public String getPlusDownload() {
+        return plusDownload;
+    }
+
+    public String getCheckBoxHome() {
+        return checkBoxHome;
+    }
+
+    public String getCheckBoxDecktop() {
+        return checkBoxDecktop;
+    }
+
+    public String getCheckBoxDocuments() {
+        return checkBoxDocuments;
+    }
+
+    public String getCheckBoxDownload() {
+        return checkBoxDownload;
+    }
+
     // Methods
     public void clickPlusRootBtnClose(){
         page.click(plusRootBtnClose);

@@ -24,17 +24,41 @@ public class TryRadioButton extends BaseTest {
     public void testForClickToRadioButton() {
         navigateTo(radioButton);
 
-        Allure.step("Провверка работы радиокнопок", () -> {
-            page.click(radioButton.getYesRadioText());
-            assertThat(page.locator(radioButton.getResult())).hasText(SELECT_YES);
-            page.click(radioButton.getImpressiveRadioBtn());
-            assertThat(page.locator(radioButton.getResult())).hasText(SELECT_IMPRESSIVE);
-            page.click(radioButton.getYesRadioBtn());
-            assertThat(page.locator(radioButton.getResult())).hasText(SELECT_YES);
-            page.click(radioButton.getImpressiveRadioText());
-            assertThat(page.locator(radioButton.getResult())).hasText(SELECT_IMPRESSIVE);
+        Allure.step("Клик по тексту кнопки 'Yes'", () -> {
+            radioButton.clickYesRadioText();
         });
 
+        Allure.step("Проверяем отображение текста", () -> {
+            radioButton.checkResultClick(SELECT_YES);
+        });
+
+        Allure.step("Клик по кнопке 'Impressive'", () -> {
+            radioButton.clickImpressiveRadioBtn();
+        });
+
+        Allure.step("Проверяем отображение текста", () -> {
+            radioButton.checkResultClick(SELECT_IMPRESSIVE);
+        });
+
+        Allure.step("Клик по кнопке 'Yes'", () -> {
+            radioButton.clickYesRadioBtn();
+        });
+
+        Allure.step("Проверяем отображение текста", () -> {
+            radioButton.checkResultClick(SELECT_YES);
+        });
+
+        Allure.step("Клик по тексту кнопки 'Impressive'", () -> {
+            radioButton.clickImpressiveRadioText();
+        });
+
+        Allure.step("Проверяем отображение текста", () -> {
+            radioButton.checkResultClick(SELECT_IMPRESSIVE);
+        });
+
+        Allure.step("Проверяем что кнопка 'No' не активна", () -> {
+            radioButton.checkNoRadioBtnIsDisabled();
+        });
     }
 
 }

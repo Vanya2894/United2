@@ -31,22 +31,27 @@ public class CheckboxesClick extends BaseTest {
         });
 
         Allure.step("Раскрываем узел Decktop", () -> {
+            page.waitForSelector(checkboxPage.getPlusDecktop());
             checkboxPage.clickPlusDecktop();
         });
 
         Allure.step("Раскрываем узел Documents", () -> {
+            page.waitForSelector(checkboxPage.getPlusDocuments());
             checkboxPage.clickPlusDocuments();
         });
 
         Allure.step("Раскрываем узел WorkSpase", () -> {
+            page.waitForSelector(checkboxPage.getPlusWorkSpase());
             checkboxPage.clickPlusWorkSpase();
         });
 
         Allure.step("Раскрываем узел Office", () -> {
+            page.waitForSelector(checkboxPage.getPlusOffice());
             checkboxPage.clickPlusOffice();
         });
 
         Allure.step("Раскрываем узел Download", () -> {
+            page.waitForSelector(checkboxPage.getPlusDownload());
             checkboxPage.clickPlusDownload();
         });
 

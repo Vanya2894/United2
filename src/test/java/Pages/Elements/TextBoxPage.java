@@ -31,7 +31,7 @@ public class TextBoxPage extends BasePage {
 
 
     // Methods
-        public void fillAndSubmitValueInTextBox(Page page, String userName, String userEmail, String currentAddress, String PermanentAddress) {
+        public void fillAndSubmitValueInTextBox(String userName, String userEmail, String currentAddress, String PermanentAddress) {
         page.locator(userNameinput).fill(userName);
         page.locator(userEmailinput).fill(userEmail);
         page.locator(currentAddressInput).fill(currentAddress);
@@ -39,20 +39,20 @@ public class TextBoxPage extends BasePage {
         page.locator(submitButton).click();
     }
 
-    public void fillAndSubmitValueInTextBox(Page page, String userName, String userEmail, String currentAddress) {
+    public void fillAndSubmitValueInTextBox(String userName, String userEmail, String currentAddress) {
         page.locator(userNameinput).fill(userName);
         page.locator(userEmailinput).fill(userEmail);
         page.locator(currentAddressInput).fill(currentAddress);
         page.locator(submitButton).click();
     }
 
-    public void fillAndSubmitValueInTextBox(Page page, String userName, String userEmail) {
+    public void fillAndSubmitValueInTextBox(String userName, String userEmail) {
         page.locator(userNameinput).fill(userName);
         page.locator(userEmailinput).fill(userEmail);
         page.locator(submitButton).click();
     }
 
-    public void fillAndSubmitValueInTextBox(Page page, String userName) {
+    public void fillAndSubmitValueInTextBox(String userName) {
         page.locator(userNameinput).fill(userName);
         page.locator(submitButton).click();
     }

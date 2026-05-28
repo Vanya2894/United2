@@ -21,7 +21,6 @@ public class ClickButtonsTest extends BaseTest {
     @Test
     public void testDoubleClick() {
         navigateTo(buttonsPage);
-        page.setDefaultTimeout(1000);
 
         Allure.step("Проверяем, что кнопки на месте и отсутствуют надписи", () -> {
             buttonsPage.checkButtonsExistAndLabelsAbsent();
