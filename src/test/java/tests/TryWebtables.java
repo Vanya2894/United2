@@ -1,12 +1,8 @@
 package tests;
 
 import Pages.Elements.Webtables;
-import com.microsoft.playwright.*;
-import com.microsoft.playwright.options.*;
 import io.qameta.allure.*;
 import org.junit.jupiter.api.*;
-
-import static com.microsoft.playwright.assertions.PlaywrightAssertions.assertThat;
 
 public class TryWebtables extends BaseTest {
 
@@ -78,7 +74,6 @@ public class TryWebtables extends BaseTest {
         });
 
         Allure.step("Меняем отображение записей на одной странице", () -> {
-
             webtables.selectFormControlFill(20);
             webtables.checkCounStringsTabl(20);
             webtables.checkCountOfPage(PAGE1OF2);

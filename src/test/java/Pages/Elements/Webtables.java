@@ -150,7 +150,9 @@ public class Webtables extends BasePage {
 
 
 
-    // Asserts
+
+
+
 
     public void checkCounStringsTabl(Integer expectedInt){
         assertThat(page.locator(getCounStringsTabl())).hasCount(expectedInt);
