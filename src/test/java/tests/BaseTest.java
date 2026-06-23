@@ -3,10 +3,12 @@ package tests;
 import Pages.BasePage;
 import com.microsoft.playwright.*;
 import com.microsoft.playwright.options.WaitUntilState;
+import io.qameta.allure.Allure;
 import io.qameta.allure.Attachment;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.extension.*;
 
+import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.nio.file.*;
 import java.util.List;
@@ -54,18 +56,26 @@ public class BaseTest {
                 .setWaitUntil(WaitUntilState.DOMCONTENTLOADED));
     }
 
+
+
     @RegisterExtension
     TestWatcher watcher = new TestWatcher() {
         @Override
         public void testFailed(ExtensionContext extensionContext, Throwable cause) {
             try {
                 if (page != null && !page.isClosed()) {
-                    String testName = extensionContext.getDisplayName();
+                    String testName = extensionContext.getRequiredTestMethod().getName();
                     Path screenshotPath = screenshotDir.resolve(testName + ".png");
                     byte[] screenshot = page.screenshot(new Page.ScreenshotOptions()
                             .setPath(screenshotPath)
                             .setFullPage(true));
-                    saveScreenshotToAllure(screenshot, testName);
+
+                    saveScreenshotToAllure(screenshot);
+                    Allure.addAttachment(
+                            "Failure Screenshot",
+                            "image/png",
+                            new ByteArrayInputStream(screenshot),
+                            ".png");
                     System.out.println("Скриншот сохранен: " + screenshotPath);
                 }
             } catch (Exception e) {
@@ -73,13 +83,11 @@ public class BaseTest {
             }
         }
 
-        @Attachment(value = "Скриншот при падении: {name}", type = "image/png")
-        private byte[] saveScreenshotToAllure(byte[] screenshot, String name) {
-            return screenshot;
+          @Attachment(value = "Failure screenshot", type = "image/png")
+          private byte[] saveScreenshotToAllure(byte[] screenshot) {
+             return screenshot;
         }
-
     };
-
     @AfterEach
     void tearDown(TestInfo testInfo) throws IOException {
         if (context != null) {
