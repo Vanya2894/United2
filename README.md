@@ -290,4 +290,3 @@ void testClickMeButton() {
 |---|---|---|
 | 29.06.2026 | 1.1.0 | Добавлены разделы: Allure-отчёты, новые Page Object (`LoginPage`, `Up_Down_Load`, `LinksPage`), тесты для авторизации и загрузки/скачивания файлов. Обновлена структура проекта. Добавлена Mermaid-схема архитектуры. |
 | 01.06.2026 | 1.0.0 | Первоначальная версия: тесты для Text Box, Check Box, Radio Button, Buttons, Web Tables. |
-|
