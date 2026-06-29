@@ -8,8 +8,11 @@ import org.junit.jupiter.api.Test;
 
 public class Login extends BaseTest{
 
-    private final String INVALIT_USERNAME = "rjnv";
-    private final String INVALIT_PASSWORD = "112233";
+
+    private final String VALID_USERNAME = "rjnv";
+    private final String VALID_PASSWORD = "112233";
+    private final String INVALID_USERNAME = "rjnv";
+    private final String INVALID_PASSWORD = "112233";
 
     LoginPage loginPage;
 
@@ -23,8 +26,15 @@ public class Login extends BaseTest{
         navigateTo(loginPage);
 
         Allure.step("Некорректный логин и пароль ", () -> {
-            loginPage.userNameFill(INVALIT_USERNAME);
-            loginPage.passwordFill(INVALIT_PASSWORD);
+            loginPage.userNameFill(INVALID_USERNAME);
+            loginPage.passwordFill(INVALID_PASSWORD);
+            loginPage.loginBtnClick();
+            loginPage.checkResultText();
+        });
+
+        Allure.step("Корректный логин и пароль ", () -> {
+            loginPage.userNameFill(VALID_USERNAME);
+            loginPage.passwordFill(VALID_PASSWORD);
             loginPage.loginBtnClick();
             loginPage.checkResultText();
         });

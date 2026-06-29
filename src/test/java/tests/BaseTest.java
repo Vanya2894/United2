@@ -57,7 +57,6 @@ public class BaseTest {
     }
 
 
-
     @RegisterExtension
     TestWatcher watcher = new TestWatcher() {
         @Override
@@ -83,9 +82,9 @@ public class BaseTest {
             }
         }
 
-          @Attachment(value = "Failure screenshot", type = "image/png")
-          private byte[] saveScreenshotToAllure(byte[] screenshot) {
-             return screenshot;
+        @Attachment(value = "Failure screenshot", type = "image/png")
+        private byte[] saveScreenshotToAllure(byte[] screenshot) {
+            return screenshot;
         }
     };
     @AfterEach

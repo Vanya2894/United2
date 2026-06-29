@@ -1,12 +1,8 @@
 package tests;
 
 import Pages.Elements.ButtonsPage;
-import com.microsoft.playwright.Locator;
-import com.microsoft.playwright.options.MouseButton;
 import io.qameta.allure.Allure;
 import org.junit.jupiter.api.*;
-
-import static com.microsoft.playwright.assertions.PlaywrightAssertions.assertThat;
 
 public class ClickButtonsTest extends BaseTest {
 
