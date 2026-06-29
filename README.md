@@ -1,10 +1,10 @@
 # 🚀 Автотесты для сайта DEMOQA
 
-[https://img.shields.io/badge/Java-17%252B-orange?logo=java](https://img.shields.io/badge/Java-17%252B-orange?logo=java)
-[https://img.shields.io/badge/Playwright-1.40%252B-brightgreen?logo=playwright](https://img.shields.io/badge/Playwright-1.40%252B-brightgreen?logo=playwright)
-[https://img.shields.io/badge/JUnit-5-25A162?logo=junit5](https://img.shields.io/badge/JUnit-5-25A162?logo=junit5)
-[https://img.shields.io/badge/Allure-Report-yellow?logo=qase](https://img.shields.io/badge/Allure-Report-yellow?logo=qase)
-[https://img.shields.io/badge/Gradle-8%252B-02303A?logo=gradle](https://img.shields.io/badge/Gradle-8%252B-02303A?logo=gradle)
+![https://img.shields.io/badge/Java-17%252B-orange?logo=java](https://img.shields.io/badge/Java-17%252B-orange?logo=java)
+![https://img.shields.io/badge/Playwright-1.40%252B-brightgreen?logo=playwright](https://img.shields.io/badge/Playwright-1.40%252B-brightgreen?logo=playwright)
+![https://img.shields.io/badge/JUnit-5-25A162?logo=junit5](https://img.shields.io/badge/JUnit-5-25A162?logo=junit5)
+![https://img.shields.io/badge/Allure-Report-yellow?logo=qase](https://img.shields.io/badge/Allure-Report-yellow?logo=qase)
+![https://img.shields.io/badge/Gradle-8%252B-02303A?logo=gradle](https://img.shields.io/badge/Gradle-8%252B-02303A?logo=gradle)
 
 > **Самостоятельная работа над проектом по автоматизированному тестированию веб-интерфейса сайта [demoqa.com](https://demoqa.com).**
 
