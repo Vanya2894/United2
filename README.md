@@ -134,44 +134,18 @@ gradlew.bat clean test
 Такая архитектура позволяет легко поддерживать код: при изменении интерфейса сайта достаточно обновить только соответствующий Page-класс, не трогая тесты.
 
 ### Схема взаимодействия компонентов
-This diagram is empty.#mermaid-svg-6{font-family:"trebuchet ms",verdana,arial,sans-serif;font-size:16px;fill:#333;}@keyframes edge-animation-frame{from{stroke-dashoffset:0;}}@keyframes dash{to{stroke-dashoffset:0;}}#mermaid-svg-6 .edge-animation-slow{stroke-dasharray:9,5!important;stroke-dashoffset:900;animation:dash 50s linear infinite;stroke-linecap:round;}#mermaid-svg-6 .edge-animation-fast{stroke-dasharray:9,5!important;stroke-dashoffset:900;animation:dash 20s linear infinite;stroke-linecap:round;}#mermaid-svg-6 .error-icon{fill:#552222;}#mermaid-svg-6 .error-text{fill:#552222;stroke:#552222;}#mermaid-svg-6 .edge-thickness-normal{stroke-width:1px;}#mermaid-svg-6 .edge-thickness-thick{stroke-width:3.5px;}#mermaid-svg-6 .edge-pattern-solid{stroke-dasharray:0;}#mermaid-svg-6 .edge-thickness-invisible{stroke-width:0;fill:none;}#mermaid-svg-6 .edge-pattern-dashed{stroke-dasharray:3;}#mermaid-svg-6 .edge-pattern-dotted{stroke-dasharray:2;}#mermaid-svg-6 .marker{fill:#333333;stroke:#333333;}#mermaid-svg-6 .marker.cross{stroke:#333333;}#mermaid-svg-6 svg{font-family:"trebuchet ms",verdana,arial,sans-serif;font-size:16px;}#mermaid-svg-6 p{margin:0;}#mermaid-svg-6 .label{font-family:"trebuchet ms",verdana,arial,sans-serif;color:#333;}#mermaid-svg-6 .cluster-label text{fill:#333;}#mermaid-svg-6 .cluster-label span{color:#333;}#mermaid-svg-6 .cluster-label span p{background-color:transparent;}#mermaid-svg-6 .label text,#mermaid-svg-6 span{fill:#333;color:#333;}#mermaid-svg-6 .node rect,#mermaid-svg-6 .node circle,#mermaid-svg-6 .node ellipse,#mermaid-svg-6 .node polygon,#mermaid-svg-6 .node path{fill:#ECECFF;stroke:#9370DB;stroke-width:1px;}#mermaid-svg-6 .rough-node .label text,#mermaid-svg-6 .node .label text,#mermaid-svg-6 .image-shape .label,#mermaid-svg-6 .icon-shape .label{text-anchor:middle;}#mermaid-svg-6 .node .katex path{fill:#000;stroke:#000;stroke-width:1px;}#mermaid-svg-6 .rough-node .label,#mermaid-svg-6 .node .label,#mermaid-svg-6 .image-shape .label,#mermaid-svg-6 .icon-shape .label{text-align:center;}#mermaid-svg-6 .node.clickable{cursor:pointer;}#mermaid-svg-6 .root .anchor path{fill:#333333!important;stroke-width:0;stroke:#333333;}#mermaid-svg-6 .arrowheadPath{fill:#333333;}#mermaid-svg-6 .edgePath .path{stroke:#333333;stroke-width:2.0px;}#mermaid-svg-6 .flowchart-link{stroke:#333333;fill:none;}#mermaid-svg-6 .edgeLabel{background-color:rgba(232,232,232, 0.8);text-align:center;}#mermaid-svg-6 .edgeLabel p{background-color:rgba(232,232,232, 0.8);}#mermaid-svg-6 .edgeLabel rect{opacity:0.5;background-color:rgba(232,232,232, 0.8);fill:rgba(232,232,232, 0.8);}#mermaid-svg-6 .labelBkg{background-color:rgba(232, 232, 232, 0.5);}#mermaid-svg-6 .cluster rect{fill:#ffffde;stroke:#aaaa33;stroke-width:1px;}#mermaid-svg-6 .cluster text{fill:#333;}#mermaid-svg-6 .cluster span{color:#333;}#mermaid-svg-6 div.mermaidTooltip{position:absolute;text-align:center;max-width:200px;padding:2px;font-family:"trebuchet ms",verdana,arial,sans-serif;font-size:12px;background:hsl(80, 100%, 96.2745098039%);border:1px solid #aaaa33;border-radius:2px;pointer-events:none;z-index:100;}#mermaid-svg-6 .flowchartTitleText{text-anchor:middle;font-size:18px;fill:#333;}#mermaid-svg-6 rect.text{fill:none;stroke-width:0;}#mermaid-svg-6 .icon-shape,#mermaid-svg-6 .image-shape{background-color:rgba(232,232,232, 0.8);text-align:center;}#mermaid-svg-6 .icon-shape p,#mermaid-svg-6 .image-shape p{background-color:rgba(232,232,232, 0.8);padding:2px;}#mermaid-svg-6 .icon-shape rect,#mermaid-svg-6 .image-shape rect{opacity:0.5;background-color:rgba(232,232,232, 0.8);fill:rgba(232,232,232, 0.8);}#mermaid-svg-6 .label-icon{display:inline-block;height:1em;overflow:visible;vertical-align:-0.125em;}#mermaid-svg-6 .node .label-icon path{fill:currentColor;stroke:revert;stroke-width:revert;}#mermaid-svg-6 :root{--mermaid-font-family:"trebuchet ms",verdana,arial,sans-serif;}
-инициализирует
 
-создаёт
-
-передаётся в
-
-наследуется от
-
-содержит локаторы и методы
-
-используется в
-
-вызывает
-
-генерирует
-
-при падении
-
-BaseTest
-
-Playwright Browser
-
-Page
-
-Page Object
-
-BasePage
-
-Конкретная страница
-
-Тестовый класс
-
-Методы проверки
-
-Allure-отчёт
-
-Скриншот + Видео
+```mermaid
+graph TD
+    A[BaseTest] -->|инициализирует| B[Playwright Browser]
+    A -->|создаёт| C[Page]
+    C -->|передаётся в| D[Page Object]
+    D -->|наследуется от| E[BasePage]
+    D -->|содержит локаторы и методы| F[Конкретная страница]
+    F -->|используется в| G[Тестовый класс]
+    G -->|вызывает| H[Методы проверки]
+    H -->|генерирует| I[Allure-отчёт]
+    A -->|при падении| J[Скриншот + Видео]
 
 ## 📊 Отчёты Allure
 
